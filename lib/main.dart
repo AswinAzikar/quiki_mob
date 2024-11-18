@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: AppRoute.generateRoute,
       initialRoute: AppRoute.splashScreen,
       builder: (context, child) => Sizer(
           builder: (context, Orientation orientation, DeviceType deviceType) {
