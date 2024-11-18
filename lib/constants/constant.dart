@@ -1,5 +1,4 @@
-
-
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:logger/logger.dart';
 
@@ -20,6 +19,8 @@ const gapXL = Gap(paddingXL);
 const gapXXL = Gap(paddingXXL);
 const gapSmall = Gap(paddingSmall);
 const gapTiny = Gap(paddingTiny);
+
+const Color splashScreenColor = Color(0xffAEBDED);
 
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
