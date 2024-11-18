@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quiki/constants/constant.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:quiki/gen/assets.gen.dart';
 import 'package:quiki/utils/size_utils.dart';
+
+import '../constants/constant.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,11 +19,24 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.light,
+        toolbarHeight: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         backgroundColor: splashScreenColor,
         primary: true,
       ),
       backgroundColor: splashScreenColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+//crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(Assets.svgs.logo),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
