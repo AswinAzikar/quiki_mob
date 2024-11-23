@@ -22,6 +22,9 @@ const gapTiny = Gap(paddingTiny);
 
 const Color splashScreenColor = Colors.white;
 
+const Color primaryColor = Color(0xff9D696A);
+
+
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
 
