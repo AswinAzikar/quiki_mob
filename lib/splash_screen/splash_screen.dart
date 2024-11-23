@@ -20,20 +20,33 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        backgroundColor: splashScreenColor,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: splashScreenColor,
+            systemNavigationBarColor: splashScreenColor),
+//backgroundColor: splashScreenColor,
         primary: true,
       ),
       backgroundColor: splashScreenColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        // mainAxisAlignment: MainAxisAlignment.center,
 //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(Assets.svgs.logo),
-            ],
+          SvgPicture.asset(
+            Assets.svgs.splashDsn,
+            height: SizeUtils.height,
+            width: SizeUtils.width,
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(Assets.svgs.logo),
+              ],
+            ),
           ),
         ],
       ),

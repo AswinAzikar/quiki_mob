@@ -20,7 +20,7 @@ const gapXXL = Gap(paddingXXL);
 const gapSmall = Gap(paddingSmall);
 const gapTiny = Gap(paddingTiny);
 
-const Color splashScreenColor = Color(0xffAEBDED);
+const Color splashScreenColor = Colors.white;
 
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
