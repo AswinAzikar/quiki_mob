@@ -5,12 +5,14 @@ class LoadingButton extends StatefulWidget {
   final Color color;
   final Widget child;
   final bool isLoading;
+  final Color? borderColor;
 
   const LoadingButton({
     super.key,
     required this.color,
     required this.child,
     this.isLoading = false,
+    this.borderColor,
   });
 
   @override
@@ -27,6 +29,7 @@ class _LoadingButtonState extends State<LoadingButton> {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20.h),
           decoration: BoxDecoration(
+            border: Border.all(color: widget.borderColor ?? Colors.transparent),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(Radius.circular(20.h)),
             color: widget.color,

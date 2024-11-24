@@ -22,7 +22,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark,
@@ -138,6 +137,23 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                   gapLarge,
+                  SvgPicture.asset(Assets.svgs.orLine),
+                  gapLarge,
+                  LoadingButton(
+                      borderColor: greyBorder,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [SvgPicture.asset(Assets.svgs.conGoogle)],
+                      )),
+                  gapLarge,
+                  LoadingButton(
+                      borderColor: greyBorder,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [SvgPicture.asset(Assets.svgs.conApple)],
+                      ))
                 ],
               ),
             ),

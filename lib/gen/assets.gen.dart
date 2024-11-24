@@ -23,17 +23,27 @@ class $AssetsPngsGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
+  /// File path: assets/svgs/con_apple.svg
+  String get conApple => 'assets/svgs/con_apple.svg';
+
+  /// File path: assets/svgs/con_google.svg
+  String get conGoogle => 'assets/svgs/con_google.svg';
+
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
 
   /// File path: assets/svgs/mail.svg
   String get mail => 'assets/svgs/mail.svg';
 
+  /// File path: assets/svgs/or_line.svg
+  String get orLine => 'assets/svgs/or_line.svg';
+
   /// File path: assets/svgs/splash_dsn.svg
   String get splashDsn => 'assets/svgs/splash_dsn.svg';
 
   /// List of all assets
-  List<String> get values => [logo, mail, splashDsn];
+  List<String> get values =>
+      [conApple, conGoogle, logo, mail, orLine, splashDsn];
 }
 
 class Assets {
