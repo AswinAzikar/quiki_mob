@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/gen/assets.gen.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
+
+import '../../widgets/loading_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -69,7 +70,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       color: Colors.grey,
                     ),
                   ),
-                  gap,
+                  gapLarge,
                   Form(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,14 +78,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         TextFormField(
                           decoration: const InputDecoration(
                               labelText: "Email",
-                              prefixIcon: Icon(Icons.mail_outline_rounded)
-                              // prefixIcon: SizedBox(
-                              //   height: 10,
-                              //   width:10,
-                              //   child: SvgPicture.asset(Assets.svgs.mail,
-                              //       width: 10, height: 10),
-                              // ),
-                              ),
+                              prefixIcon: Icon(Icons.mail_outline_rounded)),
                         ),
                         gapLarge,
                         TextFormField(
@@ -111,37 +105,39 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                   gapLarge,
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: paddingLarge.h),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(padding.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Forgot password ?",
+                          style: context.latoRegular.copyWith(
+                            fontSize: 14.fSize,
+                            color: primaryColor,
+                          ),
                         ),
                       ),
-                      child: Text(
-                        "Login",
-                        style: context.latoBold.copyWith(
-                          fontSize: 16.fSize,
-                          color: Colors.white,
+                    ],
+                  ),
+                  gapLarge,
+                  LoadingButton(
+                    color: primaryColor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.fSize,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  const Gap(16),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Don’t have an account? Sign Up",
-                      style: context.latoRegular.copyWith(
-                        fontSize: 14.fSize,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
+                  gapLarge,
                 ],
               ),
             ),
