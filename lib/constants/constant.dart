@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:logger/logger.dart';
+import 'package:quiki/utils/size_utils.dart';
 
 delayed({Duration duration = const Duration(seconds: 2)}) async {
   return await Future.delayed(duration);
@@ -13,17 +14,16 @@ const double paddingXXL = 64;
 const double paddingSmall = 4;
 const double paddingTiny = 2;
 
-const gap = Gap(padding);
-const gapLarge = Gap(paddingLarge);
-const gapXL = Gap(paddingXL);
-const gapXXL = Gap(paddingXXL);
-const gapSmall = Gap(paddingSmall);
-const gapTiny = Gap(paddingTiny);
+final gap = Gap(padding.h);
+final gapLarge = Gap(paddingLarge.h);
+final gapXL = Gap(paddingXL.h);
+final gapXXL = Gap(paddingXXL.h);
+final gapSmall = Gap(paddingSmall.h);
+final gapTiny = Gap(paddingTiny.h);
 
 const Color splashScreenColor = Colors.white;
 
 const Color primaryColor = Color(0xff9D696A);
-
 
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);

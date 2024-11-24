@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Simulate checking user data (use SharedPreferences or Hive in real app)
+    //TODO :  Simulate checking user data (use SharedPreferences or Hive in real app)
     const bool isUserExist = false;
 
     Timer(const Duration(seconds: 3), () {
