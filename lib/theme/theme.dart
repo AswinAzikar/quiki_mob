@@ -10,25 +10,25 @@ ThemeData get themeDataLight => ThemeData(
       filled: true,
       fillColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(
-          horizontal: paddingLarge, vertical: padding),
+          horizontal: paddingLarge, vertical: paddingLarge),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(padding),
+        borderRadius: BorderRadius.circular(paddingLarge),
         borderSide: const BorderSide(color: Colors.grey, width: 1.0),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(padding),
+        borderRadius: BorderRadius.circular(paddingLarge),
         borderSide: const BorderSide(color: Colors.grey, width: 1.0),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(padding),
+        borderRadius: BorderRadius.circular(paddingLarge),
         borderSide: const BorderSide(color: primaryColor, width: 2.0),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(padding),
+        borderRadius: BorderRadius.circular(paddingLarge),
         borderSide: const BorderSide(color: Colors.red, width: 1.0),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(padding),
+        borderRadius: BorderRadius.circular(paddingLarge),
         borderSide: const BorderSide(color: Colors.red, width: 2.0),
       ),
       labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),

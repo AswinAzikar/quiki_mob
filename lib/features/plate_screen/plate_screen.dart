@@ -14,12 +14,16 @@ class PlateScreen extends StatefulWidget {
 }
 
 class _PlateScreenState extends State<PlateScreen> {
+
+
   //TODO : Change the plate Text Later
   final List<String> plateText = [
     "Get delivery at your doorstep.",
     "Just Quikki",
-    "I'm Batman"
+        "I'm Batman"
   ];
+
+
 
   int _currentIndex = 0;
 
@@ -36,6 +40,7 @@ class _PlateScreenState extends State<PlateScreen> {
       ),
       body: Stack(
         children: [
+          const Scaffold(),
           Image.asset(
             Assets.pngs.plateScreen.path,
             width: SizeUtils.width,

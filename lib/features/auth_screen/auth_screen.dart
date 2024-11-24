@@ -7,8 +7,15 @@ import 'package:quiki/gen/assets.gen.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  bool _isObscured = true;
 
   @override
   Widget build(BuildContext context) {
@@ -69,18 +76,31 @@ class AuthScreen extends StatelessWidget {
                       children: [
                         TextFormField(
                           decoration: const InputDecoration(
-                            labelText: "Email",
-                            prefixIcon: Icon(Icons.email_outlined),
-                            // border: OutlineInputBorder(
-                            //   borderRadius: BorderRadius.circular(padding.h),
-                            // ),
-                          ),
+                              labelText: "Email",
+                              prefixIcon: Icon(Icons.mail_outline_rounded)
+                              // prefixIcon: SizedBox(
+                              //   height: 10,
+                              //   width:10,
+                              //   child: SvgPicture.asset(Assets.svgs.mail,
+                              //       width: 10, height: 10),
+                              // ),
+                              ),
                         ),
-                        const Gap(16),
+                        gapLarge,
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _isObscured,
                           decoration: InputDecoration(
                             labelText: "Password",
+                            suffixIcon: IconButton(
+                              icon: Icon(_isObscured
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscured = !_isObscured;
+                                });
+                              },
+                            ),
                             prefixIcon: const Icon(Icons.lock_outline),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(padding.h),
