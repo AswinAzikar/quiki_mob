@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiki/routes/app_routes.dart';
+import 'package:quiki/theme/theme.dart';
 
 import 'utils/size_utils.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: themeDataLight,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: AppRoute.generateRoute,
       initialRoute: AppRoute.splashScreen,

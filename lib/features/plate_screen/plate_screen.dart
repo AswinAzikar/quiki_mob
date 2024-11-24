@@ -36,7 +36,6 @@ class _PlateScreenState extends State<PlateScreen> {
       ),
       body: Stack(
         children: [
-          const Scaffold(),
           Image.asset(
             Assets.pngs.plateScreen.path,
             width: SizeUtils.width,
