@@ -12,12 +12,19 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngsGen {
   const $AssetsPngsGen();
 
+  /// File path: assets/pngs/dashboard.png
+  AssetGenImage get dashboard =>
+      const AssetGenImage('assets/pngs/dashboard.png');
+
+  /// File path: assets/pngs/fade.png
+  AssetGenImage get fade => const AssetGenImage('assets/pngs/fade.png');
+
   /// File path: assets/pngs/plate_screen.png
   AssetGenImage get plateScreen =>
       const AssetGenImage('assets/pngs/plate_screen.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [plateScreen];
+  List<AssetGenImage> get values => [dashboard, fade, plateScreen];
 }
 
 class $AssetsSvgsGen {

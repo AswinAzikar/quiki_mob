@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:quiki/features/dashboard/dashboard.dart';
 
 import '../features/auth_screen/auth_screen.dart';
 import '../features/navigation_screen/navigation_screen.dart';
@@ -11,20 +12,23 @@ class AppRoute {
   static const String navigationScreen = '/nav';
   static const String authScreen = '/login';
   static const String plateScreen = '/plate';
+  static const String dashboard = '/dashboard';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case authScreen:
         return PageTransition(
-          child: const AuthScreen(),
-          type: PageTransitionType.bottomToTop,
-        );
+            child: const AuthScreen(),
+            type: PageTransitionType.rightToLeft,
+            duration: Durations.long4
+            // childCurrent: const PlateScreen()
+            );
 
       case plateScreen:
         return PageTransition(
             child: const PlateScreen(),
-            type: PageTransitionType.topToBottom,
-            duration: Durations.medium1
+            type: PageTransitionType.rightToLeft,
+            duration: Durations.long4
             // childCurrent: const PlateScreen()
             );
       case navigationScreen:
@@ -32,6 +36,13 @@ class AppRoute {
       case splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
+      case dashboard:
+        return PageTransition(
+            child: const Dashboard(),
+            type: PageTransitionType.topToBottom,
+            duration: Durations.long4
+            // childCurrent: const PlateScreen()
+            );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

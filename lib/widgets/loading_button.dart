@@ -6,6 +6,7 @@ class LoadingButton extends StatefulWidget {
   final Widget child;
   final bool isLoading;
   final Color? borderColor;
+  final VoidCallback onTap;
 
   const LoadingButton({
     super.key,
@@ -13,6 +14,7 @@ class LoadingButton extends StatefulWidget {
     required this.child,
     this.isLoading = false,
     this.borderColor,
+    required this.onTap,
   });
 
   @override
@@ -20,12 +22,38 @@ class LoadingButton extends StatefulWidget {
 }
 
 class _LoadingButtonState extends State<LoadingButton> {
+  late bool haveLoading;
+
+  @override
+  void initState() {
+    super.initState();
+    haveLoading = false;
+  }
+
+  onButtonTap() {
+    if (widget.isLoading) {
+      setState(() {
+        haveLoading = true;
+      });
+
+      // Delay for 3 seconds to simulate loading, then update the state
+      Future.delayed(const Duration(seconds: 3), () {
+        setState(() {
+          haveLoading = false;
+        });
+        widget.onTap(); // Call the onTap callback after loading is done
+      });
+    } else {
+      widget.onTap(); // If not loading, directly call the onTap callback
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: GestureDetector(
-        onTap: widget.isLoading ? null : () {},
+        onTap: onButtonTap,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20.h),
           decoration: BoxDecoration(
@@ -34,7 +62,7 @@ class _LoadingButtonState extends State<LoadingButton> {
             borderRadius: BorderRadius.all(Radius.circular(20.h)),
             color: widget.color,
           ),
-          child: widget.isLoading
+          child: haveLoading
               ? const Center(
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

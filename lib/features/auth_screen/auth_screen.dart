@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/gen/assets.gen.dart';
+import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
 
@@ -121,6 +122,12 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   gapLarge,
                   LoadingButton(
+                    isLoading: true,
+                    onTap: () {
+//TODO : implement the logic to signin/ login
+
+                      Navigator.pushNamed(context, AppRoute.dashboard);
+                    },
                     color: primaryColor,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,6 +147,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   SvgPicture.asset(Assets.svgs.orLine),
                   gapLarge,
                   LoadingButton(
+                      onTap: () {},
                       borderColor: greyBorder,
                       color: Colors.white,
                       child: Row(
@@ -148,6 +156,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       )),
                   gapLarge,
                   LoadingButton(
+                      onTap: () {},
                       borderColor: greyBorder,
                       color: Colors.white,
                       child: Row(
