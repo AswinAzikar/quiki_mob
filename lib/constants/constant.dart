@@ -22,7 +22,7 @@ final gapSmall = Gap(paddingSmall.h);
 final gapTiny = Gap(paddingTiny.h);
 
 const Color splashScreenColor = Colors.white;
-
+const Color darkGreyColor = Color(0xff343947);
 const Color greyBorder = Color(0xFFE5E5EA);
 const Color primaryColor = Color(0xff9D696A);
 

@@ -7,6 +7,7 @@ class LoadingButton extends StatefulWidget {
   final bool isLoading;
   final Color? borderColor;
   final VoidCallback onTap;
+  final BorderRadius? borderRadius;
 
   const LoadingButton({
     super.key,
@@ -15,6 +16,7 @@ class LoadingButton extends StatefulWidget {
     this.isLoading = false,
     this.borderColor,
     required this.onTap,
+    this.borderRadius,
   });
 
   @override
@@ -52,14 +54,18 @@ class _LoadingButtonState extends State<LoadingButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: GestureDetector(
+      child: InkWell(
         onTap: onButtonTap,
+        borderRadius:
+            widget.borderRadius ?? BorderRadius.all(Radius.circular(20.h)),
+        splashColor: Colors.grey.withOpacity(0.7),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20.h),
           decoration: BoxDecoration(
             border: Border.all(color: widget.borderColor ?? Colors.transparent),
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(Radius.circular(20.h)),
+            borderRadius:
+                widget.borderRadius ?? BorderRadius.all(Radius.circular(20.h)),
             color: widget.color,
           ),
           child: haveLoading

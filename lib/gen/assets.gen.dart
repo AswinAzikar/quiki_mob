@@ -44,6 +44,12 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/gaussian_blur.svg
   String get gaussianBlur => 'assets/svgs/gaussian_blur.svg';
 
+  /// File path: assets/svgs/gps.svg
+  String get gps => 'assets/svgs/gps.svg';
+
+  /// File path: assets/svgs/locate.svg
+  String get locate => 'assets/svgs/locate.svg';
+
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
 
@@ -57,8 +63,17 @@ class $AssetsSvgsGen {
   String get splashDsn => 'assets/svgs/splash_dsn.svg';
 
   /// List of all assets
-  List<String> get values =>
-      [conApple, conGoogle, gaussianBlur, logo, mail, orLine, splashDsn];
+  List<String> get values => [
+        conApple,
+        conGoogle,
+        gaussianBlur,
+        gps,
+        locate,
+        logo,
+        mail,
+        orLine,
+        splashDsn
+      ];
 }
 
 class Assets {

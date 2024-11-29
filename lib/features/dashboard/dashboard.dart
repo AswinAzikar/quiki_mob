@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:quiki/constants/constant.dart';
-import 'package:quiki/features/auth_screen/auth_screen.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
+import 'package:quiki/widgets/loading_button.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -49,7 +49,7 @@ class _DashboardState extends State<Dashboard> {
               decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(color: Colors.white, blurRadius: 20, spreadRadius: 40)
               ], color: Colors.white),
-              height: SizeUtils.height / 2.5,
+              height: SizeUtils.height / 2.4,
               width: SizeUtils.width,
             ),
           ),
@@ -57,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
             padding: const EdgeInsets.all(paddingLarge),
             child: Column(
               children: [
-                Gap(SizeUtils.height / 1.7),
+                Gap(SizeUtils.height / 1.85),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -88,6 +88,78 @@ class _DashboardState extends State<Dashboard> {
                     ))
                   ],
                 ),
+                gapLarge,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Select Location",
+                      style: context.latoBold.copyWith(fontSize: 16.fSize),
+                    ),
+                  ],
+                ),
+                gapLarge,
+                LoadingButton(
+                    borderColor: greyBorder,
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          paddingLarge, 0, paddingLarge, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(Assets.svgs.locate),
+                              gap,
+                              Text(
+                                "Locate Me",
+                                style: context.latoRegular14
+                                    .copyWith(color: darkGreyColor),
+                              )
+                            ],
+                          ),
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                            color: darkGreyColor,
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      //TODO : Find GPS location on tap
+                    }),
+                gapLarge,
+                LoadingButton(
+                    borderColor: greyBorder,
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          paddingLarge, 0, paddingLarge, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(Assets.svgs.gps),
+                              gap,
+                              Text(
+                                "Provide Delivery Address Location",
+                                style: context.latoRegular14
+                                    .copyWith(color: darkGreyColor),
+                              )
+                            ],
+                          ),
+                          const Icon(
+                            Icons.arrow_forward_ios,
+                            color: darkGreyColor,
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      //TODO : Find GPS location on tap
+                    })
               ],
             ),
           )
