@@ -158,7 +158,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      //TODO : Find GPS location on tap
+                      //TODO : Update theDelivery Location
                     })
               ],
             ),
