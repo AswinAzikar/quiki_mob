@@ -5,14 +5,22 @@ class GradientWidget extends StatelessWidget {
   final double intensity;
   final Alignment begin;
   final Alignment end;
+  final double height;
+  final double width;
+  final double blurRadius; // Blur effect
+  final double illumination; // Glow effect intensity
 
   const GradientWidget({
-    Key? key,
+    super.key,
     required this.colors,
     required this.intensity,
     required this.begin,
     required this.end,
-  }) : super(key: key);
+    required this.height,
+    required this.width,
+    this.blurRadius = 0.0, // Default no blur
+    this.illumination = 0.0, // Default no glow
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +33,26 @@ class GradientWidget extends StatelessWidget {
     }).toList();
 
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: begin,
           end: end,
           colors: adjustedColors,
         ),
+        // Add glow and blur effects
+        boxShadow: illumination > 0
+            ? [
+                BoxShadow(
+                  blurStyle: BlurStyle.normal,
+                  color: adjustedColors.first.withOpacity(illumination),
+                  blurRadius: blurRadius,
+                  spreadRadius: illumination * 10,
+                  offset: const Offset(0, 0), // Centered glow
+                ),
+              ]
+            : [],
       ),
     );
   }

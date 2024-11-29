@@ -16,6 +16,10 @@ class $AssetsPngsGen {
   AssetGenImage get dashboard =>
       const AssetGenImage('assets/pngs/dashboard.png');
 
+  /// File path: assets/pngs/dashboard_png.png
+  AssetGenImage get dashboardPng =>
+      const AssetGenImage('assets/pngs/dashboard_png.png');
+
   /// File path: assets/pngs/fade.png
   AssetGenImage get fade => const AssetGenImage('assets/pngs/fade.png');
 
@@ -24,7 +28,8 @@ class $AssetsPngsGen {
       const AssetGenImage('assets/pngs/plate_screen.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [dashboard, fade, plateScreen];
+  List<AssetGenImage> get values =>
+      [dashboard, dashboardPng, fade, plateScreen];
 }
 
 class $AssetsSvgsGen {
@@ -35,6 +40,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/con_google.svg
   String get conGoogle => 'assets/svgs/con_google.svg';
+
+  /// File path: assets/svgs/gaussian_blur.svg
+  String get gaussianBlur => 'assets/svgs/gaussian_blur.svg';
 
   /// File path: assets/svgs/logo.svg
   String get logo => 'assets/svgs/logo.svg';
@@ -50,7 +58,7 @@ class $AssetsSvgsGen {
 
   /// List of all assets
   List<String> get values =>
-      [conApple, conGoogle, logo, mail, orLine, splashDsn];
+      [conApple, conGoogle, gaussianBlur, logo, mail, orLine, splashDsn];
 }
 
 class Assets {
