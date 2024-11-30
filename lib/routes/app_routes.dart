@@ -28,7 +28,7 @@ class AppRoute {
         return PageTransition(
             child: const PlateScreen(),
             type: PageTransitionType.rightToLeft,
-            duration: Durations.long4
+            duration: Durations.medium3
             // childCurrent: const PlateScreen()
             );
       case navigationScreen:
@@ -40,7 +40,7 @@ class AppRoute {
         return PageTransition(
             child: const Dashboard(),
             type: PageTransitionType.topToBottom,
-            duration: Durations.long4
+            duration: Durations.medium2
             // childCurrent: const PlateScreen()
             );
       default:
