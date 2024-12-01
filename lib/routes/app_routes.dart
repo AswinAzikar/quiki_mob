@@ -27,8 +27,8 @@ class AppRoute {
       case plateScreen:
         return PageTransition(
             child: const PlateScreen(),
-            type: PageTransitionType.rightToLeft,
-            duration: Durations.medium3
+            type: PageTransitionType.fade,
+            duration: Durations.short3
             // childCurrent: const PlateScreen()
             );
       case navigationScreen:

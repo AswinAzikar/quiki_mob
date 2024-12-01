@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
+import 'package:quiki/widgets/loading_button.dart';
 import '../../gen/assets.gen.dart';
 
 class PlateScreen extends StatefulWidget {
@@ -28,13 +32,155 @@ class _PlateScreenState extends State<PlateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      itemBuilder: (context) {
-        return [
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          return;
+        }
 
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.white,
+                ),
+                height: 200.0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Do you want to Quit?",
+                      style: context.latoBold.copyWith(fontSize: 20.fSize),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: SizeUtils.width * 0.23,
+                          child: LoadingButton(
+                            color: Colors.green,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "No",
+                                  style: context.latoBold20.copyWith(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              Navigator.of(context).pop(); // Close dialog
+                            },
+                          ),
+                        ),
+                        gapLarge,
+                        SizedBox(
+                          width: SizeUtils.width * 0.23,
+                          child: LoadingButton(
+                            color: Colors.red,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Yes",
+                                  style: context.latoBold20.copyWith(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              if (Platform.isAndroid) {
+                                SystemNavigator.pop();
+                              } else if (Platform.isIOS) {
+                                exit(0);
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
 
-          //TODO : what is this?
-        ];
+        // showModalBottomSheet(
+        //   context: context,
+        //   builder: (context) => Container(
+        //     decoration: BoxDecoration(
+        //       color: Colors.white,
+        //       borderRadius: BorderRadius.only(
+        //         topLeft: Radius.circular(40.h),
+        //         topRight: Radius.circular(40.h),
+        //       ),
+        //     ),
+        //     height: SizeUtils.height * 0.3,
+        //     width: SizeUtils.width,
+        //     padding: const EdgeInsets.all(paddingLarge),
+        //     child: Column(
+        //       mainAxisSize: MainAxisSize.max,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         Text(
+        //           "Do you want to Quit ?",
+        //           style: context.latoBold.copyWith(fontSize: 20.fSize),
+        //         ),
+        //         Row(
+        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //           children: [
+        //             SizedBox(
+        //               width: SizeUtils.width * 0.45,
+        //               child: LoadingButton(
+        //                   color: Colors.green,
+        //                   child: Row(
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       Text(
+        //                         "No",
+        //                         style: context.latoBold20
+        //                             .copyWith(color: Colors.white),
+        //                       )
+        //                     ],
+        //                   ),
+        //                   onTap: () {}),
+        //             ),
+        //             SizedBox(
+        //               width: SizeUtils.width * 0.4,
+        //               child: LoadingButton(
+        //                   color: Colors.red,
+        //                   child: Row(
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       Text(
+        //                         "Yes",
+        //                         style: context.latoBold20
+        //                             .copyWith(color: Colors.white),
+        //                       )
+        //                     ],
+        //                   ),
+        //                   onTap: () {}),
+        //             )
+        //           ],
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // );
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -136,7 +282,7 @@ class _PlateScreenState extends State<PlateScreen> {
                                   ),
                                 );
                               }
-      
+
                               return Container(
                                 width: 8.0,
                                 height: 8.0,
