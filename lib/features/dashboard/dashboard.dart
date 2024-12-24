@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
@@ -17,6 +18,36 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  Future<Position> _determinePosition(BuildContext dialogContext) async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      Navigator.pop(dialogContext); // Close the dialog
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Navigator.pop(dialogContext); // Close the dialog
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      Navigator.pop(dialogContext); // Close the dialog
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+    Navigator.pop(dialogContext); // Close the dialog after getting location
+    return position;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +158,52 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     onTap: () {
-                      //TODO : Find GPS location on tap
+                      showDialog(
+                        context: context,
+                        builder: (dialogContext) => AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: Text(
+                            "Location",
+                            style: context.latoRegular
+                                .copyWith(fontSize: 20.fSize),
+                          ),
+                          content: Text(
+                            "Quiki wants to access the Location of your device",
+                            style: context.latoRegular14
+                                .copyWith(fontSize: 14.fSize),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                _determinePosition(dialogContext).then((value) {
+                                  logan.e(
+                                      "Location : ${value.latitude} , ${value.longitude}");
+                                }).catchError((error) {
+                                  logan.e("Error: $error");
+                                });
+                              },
+                              child: Text(
+                                "Allow",
+                                style: context.latoRegular16.copyWith(
+                                    fontSize: 16.fSize,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.green),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(dialogContext);
+                                },
+                                child: Text(
+                                  "Deny",
+                                  style: context.latoRegular16.copyWith(
+                                      fontSize: 16.fSize,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.red),
+                                ))
+                          ],
+                        ),
+                      );
                     }),
                 gapLarge,
                 LoadingButton(
@@ -157,9 +233,7 @@ class _DashboardState extends State<Dashboard> {
                         ],
                       ),
                     ),
-                    onTap: () {
-                      //TODO : Update theDelivery Location
-                    })
+                    onTap: () {})
               ],
             ),
           )
