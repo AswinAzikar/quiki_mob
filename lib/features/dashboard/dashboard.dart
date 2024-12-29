@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:quiki/constants/constant.dart';
+import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
 import 'package:quiki/widgets/loading_button.dart';
@@ -18,13 +19,14 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  Future<Position> _determinePosition(BuildContext dialogContext) async {
+  bool _isRequestingLocation = false;
+
+  Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      Navigator.pop(dialogContext); // Close the dialog
       return Future.error('Location services are disabled.');
     }
 
@@ -32,20 +34,16 @@ class _DashboardState extends State<Dashboard> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        Navigator.pop(dialogContext); // Close the dialog
-        return Future.error('Location permissions are denied');
+        return Future.error('Location permissions are denied.');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      Navigator.pop(dialogContext); // Close the dialog
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    Position position = await Geolocator.getCurrentPosition();
-    Navigator.pop(dialogContext); // Close the dialog after getting location
-    return position;
+    return await Geolocator.getCurrentPosition();
   }
 
   @override
@@ -131,109 +129,136 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 gapLarge,
                 LoadingButton(
-                    borderColor: greyBorder,
-                    color: Colors.transparent,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                          paddingLarge, 0, paddingLarge, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(Assets.svgs.locate),
-                              gap,
-                              Text(
-                                "Locate Me",
-                                style: context.latoRegular14
-                                    .copyWith(color: darkGreyColor),
-                              )
-                            ],
-                          ),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            color: darkGreyColor,
-                          )
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (dialogContext) => AlertDialog(
-                          backgroundColor: Colors.white,
-                          title: Text(
-                            "Location",
-                            style: context.latoRegular
-                                .copyWith(fontSize: 20.fSize),
-                          ),
-                          content: Text(
-                            "Quiki wants to access the Location of your device",
-                            style: context.latoRegular14
-                                .copyWith(fontSize: 14.fSize),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                _determinePosition(dialogContext).then((value) {
-                                  logan.e(
-                                      "Location : ${value.latitude} , ${value.longitude}");
-                                }).catchError((error) {
-                                  logan.e("Error: $error");
-                                });
-                              },
-                              child: Text(
-                                "Allow",
-                                style: context.latoRegular16.copyWith(
-                                    fontSize: 16.fSize,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.green),
-                              ),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pop(dialogContext);
-                                },
-                                child: Text(
-                                  "Deny",
-                                  style: context.latoRegular16.copyWith(
-                                      fontSize: 16.fSize,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.red),
-                                ))
+                  borderColor: greyBorder,
+                  color: Colors.transparent,
+                  isLoading: _isRequestingLocation,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        paddingLarge, 0, paddingLarge, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(Assets.svgs.locate),
+                            gap,
+                            Text(
+                              "Locate Me",
+                              style: context.latoRegular14
+                                  .copyWith(color: darkGreyColor),
+                            )
                           ],
                         ),
-                      );
-                    }),
-                gapLarge,
-                LoadingButton(
-                    borderColor: greyBorder,
-                    color: Colors.transparent,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                          paddingLarge, 0, paddingLarge, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(Assets.svgs.gps),
-                              gap,
-                              Text(
-                                "Provide Delivery Address Location",
-                                style: context.latoRegular14
-                                    .copyWith(color: darkGreyColor),
-                              )
-                            ],
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          color: darkGreyColor,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    if (_isRequestingLocation) return;
+
+                    setState(() {
+                      _isRequestingLocation = true;
+                    });
+
+                    showDialog(
+                      context: context,
+                      builder: (dialogContext) => AlertDialog(
+                        backgroundColor: Colors.white,
+                        title: Text(
+                          "Location",
+                          style:
+                              context.latoRegular.copyWith(fontSize: 20.fSize),
+                        ),
+                        content: Text(
+                          "Quiki wants to access the Location of your device",
+                          style: context.latoRegular14
+                              .copyWith(fontSize: 14.fSize),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () async {
+                              Navigator.pop(
+                                  dialogContext); // Close dialog immediately
+                              try {
+                                Position position = await _determinePosition();
+                                logan.e(
+                                    "Location: ${position.latitude}, ${position.longitude}");
+                                if (mounted) {
+                                  Navigator.pushNamed(
+                                      context, AppRoute.navigationScreen);
+                                }
+                              } catch (error) {
+                                logan.e("Error: $error");
+                              } finally {
+                                if (mounted) {
+                                  setState(() {
+                                    _isRequestingLocation = false;
+                                  });
+                                }
+                              }
+                            },
+                            child: Text(
+                              "Allow",
+                              style: context.latoRegular16.copyWith(
+                                  fontSize: 16.fSize,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.green),
+                            ),
                           ),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            color: darkGreyColor,
-                          )
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(dialogContext);
+                            },
+                            child: Text(
+                              "Deny",
+                              style: context.latoRegular16.copyWith(
+                                  fontSize: 16.fSize,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.red),
+                            ),
+                          ),
                         ],
                       ),
+                    );
+                  },
+                ),
+                gapLarge,
+                LoadingButton(
+                  borderColor: greyBorder,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        paddingLarge, 0, paddingLarge, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(Assets.svgs.gps),
+                            gap,
+                            Text(
+                              "Provide Delivery Address Location",
+                              style: context.latoRegular14
+                                  .copyWith(color: darkGreyColor),
+                            ),
+                          ],
+                        ),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          color: darkGreyColor,
+                        ),
+                      ],
                     ),
-                    onTap: () {})
+                  ),
+                  onTap: () {
+                    if (mounted) {
+                      Navigator.pushNamed(context, AppRoute.manualLoc);
+                    }
+                  },
+                ),
               ],
             ),
           )

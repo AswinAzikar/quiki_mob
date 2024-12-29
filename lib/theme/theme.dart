@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:quiki/constants/constant.dart';
 
 ThemeData get themeDataLight => ThemeData(
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
         bodySmall: TextStyle(
             fontFamily: 'Lato', fontWeight: FontWeight.w400, fontSize: 12)),
     scaffoldBackgroundColor: Colors.white,
     inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
       filled: true,
       fillColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(
