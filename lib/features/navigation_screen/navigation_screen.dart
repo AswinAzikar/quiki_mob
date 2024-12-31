@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/features/home_screen/home_screen.dart';
+import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -77,7 +78,39 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: tapIndex == 0
-          ? AppBar()
+          ? AppBar(
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Deliver To",
+                    style: context.latoRegular14.copyWith(fontSize: 14.h),
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.location_on,
+                        color: primaryColor,
+                      ),
+                      SizedBox(
+                        width: SizeUtils.width / 2,
+                        child: Text(
+
+
+
+                          //TODO : need an api to fetch the place 
+                        //TODO : Do we need any ontap functionality to edit this address
+                          "Square 1 , Binori B ,Ambili Rd, Rajasthan",
+                          overflow: TextOverflow.ellipsis,
+                          style: context.latoRegular14
+                              .copyWith(fontSize: 14.h, color: primaryColor),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
           : AppBar(
               systemOverlayStyle:
                   SystemUiOverlayStyle(statusBarColor: scaffoldBg),
