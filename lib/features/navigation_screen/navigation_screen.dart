@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quiki/constants/constant.dart';
+import 'package:quiki/features/home_screen/home_screen.dart';
+import 'package:quiki/utils/size_utils.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -54,9 +56,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   ];
 
   final List<Widget> _screens = [
-    Center(
-      child: Text("Home"),
-    ),
+    HomeScreen(),
     Center(
       child: Text("Explore"),
     ),
@@ -75,6 +75,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
+        navBarHeight: kToolbarHeight * 1.1.h,
+        confineToSafeArea: true,
+        padding: EdgeInsets.only(bottom: padding.h),
         hideOnScrollSettings: HideOnScrollSettings(hideNavBarOnScroll: true
 
             //TODO: attach the  scroll controllers  here

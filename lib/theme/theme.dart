@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiki/constants/constant.dart';
 
 ThemeData get themeDataLight => ThemeData(
+    appBarTheme: AppBarTheme(color: Colors.white),
     textTheme: TextTheme(
         bodySmall: TextStyle(
             fontFamily: 'Lato', fontWeight: FontWeight.w400, fontSize: 12)),
