@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quiki/constants/constant.dart';
+import 'package:quiki/features/home_screen/controllers.dart';
 import 'package:quiki/features/home_screen/home_screen.dart';
 import 'package:quiki/theme/theme.dart';
 import 'package:quiki/utils/size_utils.dart';
@@ -95,11 +96,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
                       SizedBox(
                         width: SizeUtils.width / 2,
                         child: Text(
-
-
-
-                          //TODO : need an api to fetch the place 
-                        //TODO : Do we need any ontap functionality to edit this address
+                          //TODO : need an api to fetch the place
+                          //TODO : Do we need any ontap functionality to edit this address
                           "Square 1 , Binori B ,Ambili Rd, Rajasthan",
                           overflow: TextOverflow.ellipsis,
                           style: context.latoRegular14
@@ -121,11 +119,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
         navBarHeight: kToolbarHeight * 1.1.h,
         confineToSafeArea: true,
         padding: EdgeInsets.only(bottom: padding.h),
-        hideOnScrollSettings: HideOnScrollSettings(hideNavBarOnScroll: true
+        hideOnScrollSettings: HideOnScrollSettings(
+          hideNavBarOnScroll: true,
 
-            //TODO: attach the  scroll controllers from all  other screens,  here
-
-            ),
+          scrollControllers: [
+            homeScrollController,
+          ],
+          //TODO: attach the  scroll controllers from all  other screens,  here
+        ),
         context,
         controller: _tabcontroller,
         screens: _screens,

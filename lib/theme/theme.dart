@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:quiki/constants/constant.dart';
 
 ThemeData get themeDataLight => ThemeData(
+    searchBarTheme: SearchBarThemeData(
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(padding)),
+      ),
+      side: WidgetStatePropertyAll(
+          BorderSide(style: BorderStyle.solid, color: greyBorder, width: 1)),
+      backgroundColor: WidgetStatePropertyAll(Colors.white),
+    ),
     appBarTheme: AppBarTheme(color: scaffoldBg),
     textTheme: TextTheme(
         bodySmall: TextStyle(
