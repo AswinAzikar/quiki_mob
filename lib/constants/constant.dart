@@ -23,10 +23,11 @@ final gapTiny = Gap(paddingTiny.h);
 
 const Color splashScreenColor = Colors.white;
 const Color darkGreyColor = Color(0xff343947);
+const Color navGrey = Color(0xffD4D7EC);
 const Color greyBorder = Color(0xFFE5E5EA);
-// const Color primaryColor = Color(0xff9D696A);
+const Color primaryColor = Color(0xff9D696A);
 
-const Color primaryColor = Color(0xff6b45bc);
+// const Color primaryColor = Color(0xff6b45bc);
 
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quiki/constants/constant.dart';
 
@@ -11,37 +12,45 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   late PersistentTabController _tabcontroller;
-  final bool _hideNavbar = true;
 
   final NavBarStyle _navBarStyle = NavBarStyle.style3;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabcontroller = PersistentTabController();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   final List<PersistentBottomNavBarItem> _navBarItems = [
     PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        scrollController: ScrollController(keepScrollOffset: true),
+        icon: Icon(LucideIcons.house),
         title: "Home",
         activeColorPrimary: primaryColor,
-        inactiveColorPrimary: darkGreyColor),
+        inactiveColorPrimary: navGrey),
     PersistentBottomNavBarItem(
-        icon: Icon(Icons.people),
-        title: "user",
+        scrollController: ScrollController(keepScrollOffset: true),
+        icon: Icon(LucideIcons.binoculars),
+        title: "Explore",
         activeColorPrimary: primaryColor,
-        inactiveColorPrimary: darkGreyColor),
+        inactiveColorPrimary: navGrey),
     PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
-        title: "Settings",
+        icon: Icon(LucideIcons.heart),
+        title: "Wishlist",
         activeColorPrimary: primaryColor,
-        inactiveColorPrimary: darkGreyColor)
+        inactiveColorPrimary: navGrey),
+    PersistentBottomNavBarItem(
+        scrollController: ScrollController(keepScrollOffset: true),
+        icon: Icon(LucideIcons.package),
+        title: "Orders",
+        activeColorPrimary: primaryColor,
+        inactiveColorPrimary: navGrey),
+    PersistentBottomNavBarItem(
+        scrollController: ScrollController(keepScrollOffset: true),
+        icon: Icon(LucideIcons.userRound),
+        title: "Profile",
+        activeColorPrimary: primaryColor,
+        inactiveColorPrimary: navGrey),
   ];
 
   final List<Widget> _screens = [
@@ -49,10 +58,16 @@ class _NavigationScreenState extends State<NavigationScreen> {
       child: Text("Home"),
     ),
     Center(
-      child: Text("users"),
+      child: Text("Explore"),
     ),
     Center(
-      child: Text("settings"),
+      child: Text("Wishlist"),
+    ),
+    Center(
+      child: Text("Orders"),
+    ),
+    Center(
+      child: Text("Profile"),
     )
   ];
 
@@ -60,11 +75,18 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
-        navBarStyle: _navBarStyle,
+        hideOnScrollSettings: HideOnScrollSettings(hideNavBarOnScroll: true
+
+            //TODO: attach the  scroll controllers  here
+
+            ),
         context,
+        controller: _tabcontroller,
         screens: _screens,
         items: _navBarItems,
-        stateManagement: true,
+        hideNavigationBarWhenKeyboardAppears: true,
+        navBarStyle: _navBarStyle,
+        handleAndroidBackButtonPress: true,
       ),
     );
   }
