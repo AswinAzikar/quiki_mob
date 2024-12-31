@@ -21,6 +21,10 @@ final gapXXL = Gap(paddingXXL.h);
 final gapSmall = Gap(paddingSmall.h);
 final gapTiny = Gap(paddingTiny.h);
 
+
+
+
+const Color scaffoldBg  = Color(0xffF7F7F7);
 const Color splashScreenColor = Colors.white;
 const Color darkGreyColor = Color(0xff343947);
 const Color navGrey = Color(0xffD4D7EC);

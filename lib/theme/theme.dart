@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:quiki/constants/constant.dart';
 
 ThemeData get themeDataLight => ThemeData(
-    appBarTheme: AppBarTheme(color: Colors.white),
+    appBarTheme: AppBarTheme(color: scaffoldBg),
     textTheme: TextTheme(
         bodySmall: TextStyle(
             fontFamily: 'Lato', fontWeight: FontWeight.w400, fontSize: 12)),
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: scaffoldBg,
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
       filled: true,

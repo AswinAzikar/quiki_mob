@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quiki/constants/constant.dart';
@@ -71,22 +72,36 @@ class _NavigationScreenState extends State<NavigationScreen> {
     )
   ];
 
+  int tapIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: tapIndex == 0
+          ? AppBar()
+          : AppBar(
+              systemOverlayStyle:
+                  SystemUiOverlayStyle(statusBarColor: scaffoldBg),
+              toolbarHeight: 0,
+            ),
+      drawer: tapIndex == 0 ? Drawer() : SizedBox(),
       body: PersistentTabView(
         navBarHeight: kToolbarHeight * 1.1.h,
         confineToSafeArea: true,
         padding: EdgeInsets.only(bottom: padding.h),
         hideOnScrollSettings: HideOnScrollSettings(hideNavBarOnScroll: true
 
-            //TODO: attach the  scroll controllers  here
+            //TODO: attach the  scroll controllers from all  other screens,  here
 
             ),
         context,
         controller: _tabcontroller,
         screens: _screens,
         items: _navBarItems,
+        onItemSelected: (value) {
+          setState(() {
+            tapIndex = value;
+          });
+        },
         hideNavigationBarWhenKeyboardAppears: true,
         navBarStyle: _navBarStyle,
         handleAndroidBackButtonPress: true,
