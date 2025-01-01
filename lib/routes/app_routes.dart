@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quiki/features/dashboard/dashboard.dart';
 import 'package:quiki/features/manual_locaton/manual_loc_screen.dart';
+import 'package:quiki/features/search_screen/search_screen.dart';
 
 import '../features/auth_screen/auth_screen.dart';
 import '../features/navigation_screen/navigation_screen.dart';
@@ -15,6 +16,7 @@ class AppRoute {
   static const String plateScreen = '/plate';
   static const String dashboard = '/dashboard';
   static const String manualLoc = '/manualLoc';
+  static const String searchScreen = '/search';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,6 +35,20 @@ class AppRoute {
             duration: Durations.short3
             // childCurrent: const PlateScreen()
             );
+
+      // case searchScreen:
+      //   return PageTransition(
+      //     child: SearchScreen(),
+      //     type: PageTransitionType.fade,
+      //   );
+
+      case searchScreen:
+        return PageTransition(
+            child: const SearchScreen(),
+            type: PageTransitionType.fade,
+            duration: Durations.short3
+            // childCurrent: const PlateScreen()
+            );  
       case navigationScreen:
         return MaterialPageRoute(builder: (_) => const NavigationScreen());
       case splashScreen:
