@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:quiki/constants/constant.dart';
+import 'package:quiki/utils/size_utils.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -10,9 +13,36 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Search Screen'),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: paddingLarge),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: primaryColor,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: commonPadding,
+        child: Column(
+          children: [
+            SearchBar(
+              autoFocus: true,
+              hintText: "Search for Cakes, Props and more",
+              enabled: true,
+              leading: Icon(
+                LucideIcons.search,
+                color: darkGreyColor,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         padding:
-            EdgeInsets.fromLTRB(paddingLarge, padding, paddingLarge, padding),
+            commonPadding,
         controller: homeScrollController,
         child: Column(
           children: [

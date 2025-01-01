@@ -30,6 +30,10 @@ const Color primaryColor = Color(0xff9D696A);
 
 // const Color primaryColor = Color(0xff6b45bc);
 
+
+
+
+const commonPadding =EdgeInsets.fromLTRB(paddingLarge, padding, paddingLarge, padding);
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
 
