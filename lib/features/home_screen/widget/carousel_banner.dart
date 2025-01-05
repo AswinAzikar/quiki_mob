@@ -34,7 +34,7 @@ class CarouselBanner extends StatelessWidget {
                 children: [
                   Container(
                     height: SizeUtils.height * 0.24,
-                    width: SizeUtils.width * 0.89,
+                    width: SizeUtils.width * 0.9,
                     decoration: BoxDecoration(
                       boxShadow: commonShadow,
                       color: Colors.white,

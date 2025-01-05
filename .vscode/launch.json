@@ -17,11 +17,17 @@
             "type": "dart",
             "flutterMode": "profile"
         },
-        {
-            "name": "quiki (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
+          {
+      "name": "Flutter: Build APK",
+      "type": "dart",
+      "request": "launch",
+      "program": "build",
+      "args": [
+        "apk",
+        "--release"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "flutter: flutter build apk"
+    }
     ]
 }

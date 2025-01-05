@@ -27,10 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: commonPadding,
         controller: homeScrollController,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HomeSearchBar(),
             gapXL,
             CarouselBanner(),
+            gap,
+            Text(
+              "Categories",
+              style: context.latoBold20,
+            ),
+            gapLarge,
+
+
+            
           ],
         ),
       ),
