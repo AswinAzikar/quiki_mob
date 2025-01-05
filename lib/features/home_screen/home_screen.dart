@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quiki/constants/constant.dart';
 import 'package:quiki/features/home_screen/controllers.dart';
-import 'package:quiki/features/search_screen/search_screen.dart';
 import 'package:quiki/routes/app_routes.dart';
 // import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/utils/size_utils.dart';

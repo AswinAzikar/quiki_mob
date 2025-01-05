@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quiki/constants/constant.dart';
-import 'package:quiki/utils/size_utils.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

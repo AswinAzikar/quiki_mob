@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quiki/constants/constant.dart';
-import 'package:quiki/utils/size_utils.dart';
 
 ThemeData get themeDataLight => ThemeData(
     searchBarTheme: SearchBarThemeData(
