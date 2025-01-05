@@ -19,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    logan.f(cakeItems.length);
     return Scaffold(
       body: SingleChildScrollView(
         padding: commonPadding,
@@ -42,28 +41,39 @@ class _HomeScreenState extends State<HomeScreen> {
             gapXL,
             FlutterCarousel(
               options: FlutterCarouselOptions(
+                enlargeCenterPage: true,
                 height: SizeUtils.height * 0.24,
                 enableInfiniteScroll: true,
                 autoPlay: true,
               ),
               items: cakeItems.map((e) {
                 return Builder(
-                  builder: (context) => Padding(
-                    padding: const EdgeInsets.only(left: paddingLarge),
-                    child: Container(
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        boxShadow: commonShadow,
-                        color: Colors.white,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(paddingXL),
+                  builder: (context) {
+                    logan.d("Next Item: ${e.productName}");
+
+                    return Padding(
+                      padding: const EdgeInsets.only(left: paddingSmall),
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: SizeUtils.height * 0.24,
+                            width: SizeUtils.width,
+                            decoration: BoxDecoration(
+                              boxShadow: commonShadow,
+                              color: Colors.white,
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.circular(paddingXL),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(paddingXL),
+                              child:
+                                  Image.network(e.imageUrl, fit: BoxFit.fill),
+                            ),
+                          ),
+                        ],
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(paddingXL),
-                        child: Image.network(e.imageUrl, fit: BoxFit.fill),
-                      ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               }).toList(),
             )
