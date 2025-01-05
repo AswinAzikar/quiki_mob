@@ -182,6 +182,11 @@ class _PlateScreenState extends State<PlateScreen> {
         //   ),
         // );
       },
+    
+    
+    
+    
+    
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(

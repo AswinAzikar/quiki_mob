@@ -20,6 +20,7 @@ dependencies:
   geolocator: ^13.0.2
   persistent_bottom_nav_bar: ^6.2.1
   lucide_icons_flutter: ^1.2.5
+  flutter_carousel_widget: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -32,6 +33,7 @@ flutter:
   assets:
     - assets/svgs/
     - assets/pngs/
+    - assets/jpgs/
 
   fonts:
     - family: Lato

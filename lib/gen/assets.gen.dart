@@ -9,6 +9,17 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsJpgsGen {
+  const $AssetsJpgsGen();
+
+  /// File path: assets/jpgs/offer_banner.jpg
+  AssetGenImage get offerBanner =>
+      const AssetGenImage('assets/jpgs/offer_banner.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [offerBanner];
+}
+
 class $AssetsPngsGen {
   const $AssetsPngsGen();
 
@@ -79,6 +90,7 @@ class $AssetsSvgsGen {
 class Assets {
   Assets._();
 
+  static const $AssetsJpgsGen jpgs = $AssetsJpgsGen();
   static const $AssetsPngsGen pngs = $AssetsPngsGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
 }
