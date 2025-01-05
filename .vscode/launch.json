@@ -4,14 +4,14 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "quiki_build_common",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main.dart"
-
-        },
-        {
+         {
+      "name": "Flutter: Debug",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}"
+    }
+        ,{
             "name": "quiki (profile mode)",
             "request": "launch",
             "type": "dart",
