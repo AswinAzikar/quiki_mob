@@ -19,7 +19,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  bool _isRequestingLocation = false;
+  final bool _isRequestingLocation = false;
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -131,7 +131,6 @@ class _DashboardState extends State<Dashboard> {
                 LoadingButton(
                   borderColor: greyBorder,
                   color: Colors.transparent,
-                  isLoading: _isRequestingLocation,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
                         paddingLarge, 0, paddingLarge, 0),
@@ -157,12 +156,6 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   onTap: () {
-                    if (_isRequestingLocation) return;
-
-                    setState(() {
-                      _isRequestingLocation = true;
-                    });
-
                     showDialog(
                       context: context,
                       builder: (dialogContext) => AlertDialog(
@@ -180,23 +173,46 @@ class _DashboardState extends State<Dashboard> {
                         actions: [
                           TextButton(
                             onPressed: () async {
-                              Navigator.pop(
-                                  dialogContext); // Close dialog immediately
+                              Navigator.pop(dialogContext);
+
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (loadingContext) => AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  content: Row(
+                                    children: [
+                                      const CircularProgressIndicator(),
+                                      const SizedBox(width: 20),
+                                      Text(
+                                        "Fetching Location...",
+                                        style: context.latoRegular14,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+
                               try {
                                 Position position = await _determinePosition();
                                 logan.e(
                                     "Location: ${position.latitude}, ${position.longitude}");
                                 if (mounted) {
+                                  Navigator.pop(context); // Dismiss loading
                                   Navigator.pushNamed(
                                       context, AppRoute.navigationScreen);
                                 }
                               } catch (error) {
                                 logan.e("Error: $error");
-                              } finally {
                                 if (mounted) {
-                                  setState(() {
-                                    _isRequestingLocation = false;
-                                  });
+                                  Navigator.pop(context); // Dismiss loading
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        "Failed to fetch location: $error",
+                                      ),
+                                    ),
+                                  );
                                 }
                               }
                             },
