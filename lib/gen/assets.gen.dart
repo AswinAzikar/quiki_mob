@@ -46,6 +46,12 @@ class $AssetsPngsGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
+  /// File path: assets/svgs/beverage_cat.svg
+  String get beverageCat => 'assets/svgs/beverage_cat.svg';
+
+  /// File path: assets/svgs/cake_cat.svg
+  String get cakeCat => 'assets/svgs/cake_cat.svg';
+
   /// File path: assets/svgs/con_apple.svg
   String get conApple => 'assets/svgs/con_apple.svg';
 
@@ -54,6 +60,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/gaussian_blur.svg
   String get gaussianBlur => 'assets/svgs/gaussian_blur.svg';
+
+  /// File path: assets/svgs/gifts_cat.svg
+  String get giftsCat => 'assets/svgs/gifts_cat.svg';
 
   /// File path: assets/svgs/gps.svg
   String get gps => 'assets/svgs/gps.svg';
@@ -70,19 +79,26 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/or_line.svg
   String get orLine => 'assets/svgs/or_line.svg';
 
+  /// File path: assets/svgs/prop_cat.svg
+  String get propCat => 'assets/svgs/prop_cat.svg';
+
   /// File path: assets/svgs/splash_dsn.svg
   String get splashDsn => 'assets/svgs/splash_dsn.svg';
 
   /// List of all assets
   List<String> get values => [
+        beverageCat,
+        cakeCat,
         conApple,
         conGoogle,
         gaussianBlur,
+        giftsCat,
         gps,
         locate,
         logo,
         mail,
         orLine,
+        propCat,
         splashDsn
       ];
 }

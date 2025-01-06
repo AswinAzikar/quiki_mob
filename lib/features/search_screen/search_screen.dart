@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quiki/constants/constant.dart';
 
@@ -22,6 +23,8 @@ class _SearchScreenState extends State<SearchScreen> {
               color: primaryColor,
             ),
             onPressed: () {
+              HapticFeedback.selectionClick();
+
               Navigator.of(context).pop();
             },
           ),

@@ -28,18 +28,18 @@ const Color navGrey = Color(0xffD4D7EC);
 const Color greyBorder = Color(0xFFE5E5EA);
 const Color primaryColor = Color(0xff9D696A);
 
+
 // const Color primaryColor = Color(0xff6b45bc);
-List <BoxShadow>commonShadow =  [
-                  BoxShadow(
-                      color: Colors.black.withAlpha(50),
-                      blurRadius: 4,
-                      spreadRadius: 3,
-                      offset: Offset(3, 2))
-                ];
+List<BoxShadow> commonShadow = [
+  BoxShadow(
+      color: Colors.black.withAlpha(50),
+      blurRadius: 4,
+      spreadRadius: 3,
+      offset: Offset(3, 2))
+];
 
-
-
-const commonPadding =EdgeInsets.fromLTRB(paddingLarge, padding, paddingLarge, padding);
+const commonPadding =
+    EdgeInsets.fromLTRB(paddingLarge, padding, paddingLarge, padding);
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
 

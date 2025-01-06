@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiki/constants/constant.dart';
-import 'package:quiki/database/dummy_offer.dart';
 import 'package:quiki/features/home_screen/controllers.dart';
 import 'package:quiki/features/home_screen/widget/carousel_banner.dart';
-import 'package:quiki/routes/app_routes.dart';
+import 'package:quiki/gen/assets.gen.dart';
 import 'package:quiki/theme/theme.dart';
-// import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/utils/size_utils.dart';
+// import 'package:quiki/routes/app_routes.dart';
 
 import 'widget/home_search_bar.dart';
+import 'widget/svg_round_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,9 +37,31 @@ class _HomeScreenState extends State<HomeScreen> {
               style: context.latoBold20,
             ),
             gapLarge,
-
-
-            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgRoundWidgets(
+                  onTap: () {},
+                  label: 'Cakes',
+                  svgString: Assets.svgs.cakeCat,
+                ),
+                SvgRoundWidgets(
+                  onTap: () {},
+                  label: 'Gifts',
+                  svgString: Assets.svgs.giftsCat,
+                ),
+                SvgRoundWidgets(
+                  onTap: () {},
+                  label: 'Props',
+                  svgString: Assets.svgs.propCat,
+                ),
+                SvgRoundWidgets(
+                  onTap: () {},
+                  label: 'Beverages',
+                  svgString: Assets.svgs.beverageCat,
+                ),
+              ],
+            ),
           ],
         ),
       ),

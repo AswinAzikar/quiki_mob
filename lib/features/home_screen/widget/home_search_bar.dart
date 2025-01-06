@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quiki/routes/app_routes.dart';
 import 'package:quiki/utils/size_utils.dart';
@@ -13,8 +14,12 @@ class HomeSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context, rootNavigator: true)
-          .pushNamed(AppRoute.searchScreen),
+      onTap: () {
+        HapticFeedback.selectionClick();
+
+        Navigator.of(context, rootNavigator: true)
+            .pushNamed(AppRoute.searchScreen);
+      },
       child: SearchBar(
         hintStyle: WidgetStatePropertyAll(TextStyle(fontSize: 14.h)),
         hintText: "Search for Cakes, Props and more",
