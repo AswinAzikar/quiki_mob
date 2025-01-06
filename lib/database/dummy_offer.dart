@@ -1,12 +1,14 @@
-class CakeItem {
+class DummyOffer {
   final String productId;
   final String productName;
   final String imageUrl;
   final double offerPercentage;
   final String offerDescription;
   final String productDescription;
+  final String category;
 
-  CakeItem({
+  DummyOffer({
+    required this.category,
     required this.productId,
     required this.productName,
     required this.imageUrl,
@@ -16,38 +18,41 @@ class CakeItem {
   });
 }
 
-
-final List<CakeItem> cakeItems = [
-  CakeItem(
+final List<DummyOffer> dummyOffers = [
+  DummyOffer(
+    category: 'Cake',
     productId: "C001",
-    productName: "Chocolate Fudge Cake",
+    productName: "Chocolate Fudge ",
     imageUrl:
         "https://hips.hearstapps.com/del.h-cdn.co/assets/17/16/2048x1152/hd-aspect-1492694005-108-sein-9781101967140-art-r1-1.jpg",
     offerPercentage: 10.0,
     offerDescription: "10% off for this weekend only!",
     productDescription: "Rich and moist chocolate cake with fudge icing.",
   ),
-  CakeItem(
+  DummyOffer(
+    category: 'Cake',
     productId: "C002",
-    productName: "Vanilla Sponge Cake",
+    productName: "Vanilla Sponge ",
     imageUrl:
         "https://www.recipetineats.com/tachyon/2017/09/Vanilla-Sponge-Cake-2.jpg",
     offerPercentage: 15.0,
     offerDescription: "15% off on your first order!",
     productDescription: "Classic vanilla sponge cake with creamy frosting.",
   ),
-  CakeItem(
+  DummyOffer(
+    category: 'Cake',
     productId: "C003",
-    productName: "Red Velvet Cake",
+    productName: "Red Velvet ",
     imageUrl:
         "https://www.recipetineats.com/tachyon/2016/06/Red-Velvet-Cake-with-Cream-Cheese-Frosting_landscape.jpg",
     offerPercentage: 20.0,
     offerDescription: "20% off on festive season orders!",
     productDescription: "Delicious red velvet cake with cream cheese frosting.",
   ),
-  CakeItem(
+  DummyOffer(
+    category: 'Cake',
     productId: "C004",
-    productName: "Black Forest Cake",
+    productName: "Black Forest ",
     imageUrl:
         "https://mygerman.recipes/wp-content/uploads/2020/09/sm-Blackforest-Cake-2.jpg",
     offerPercentage: 12.0,
@@ -55,7 +60,8 @@ final List<CakeItem> cakeItems = [
     productDescription:
         "Layered chocolate cake with cherries and whipped cream.",
   ),
-  CakeItem(
+  DummyOffer(
+    category: 'Cake',
     productId: "C005",
     productName: "Fruit Cake",
     imageUrl: "https://thecococompany.com/cdn/shop/files/FRESHFRUITCAKE.jpg",

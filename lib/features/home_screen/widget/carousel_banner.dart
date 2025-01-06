@@ -23,7 +23,7 @@ class CarouselBanner extends StatelessWidget {
         enableInfiniteScroll: true,
         autoPlay: true,
       ),
-      items: cakeItems.map((e) {
+      items: dummyOffers.map((e) {
         return Builder(
           builder: (context) {
             return GestureDetector(
