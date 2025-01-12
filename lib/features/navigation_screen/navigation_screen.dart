@@ -80,6 +80,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return Scaffold(
       appBar: tapIndex == 0
           ? AppBar(
+              surfaceTintColor: Colors.transparent,
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
