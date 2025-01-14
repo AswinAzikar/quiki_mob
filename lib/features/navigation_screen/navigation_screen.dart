@@ -34,12 +34,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
         activeColorPrimary: primaryColor,
         inactiveColorPrimary: navGrey),
     PersistentBottomNavBarItem(
-        scrollController: ScrollController(keepScrollOffset: true),
-        icon: Icon(LucideIcons.binoculars),
-        title: "Explore",
-        activeColorPrimary: primaryColor,
-        inactiveColorPrimary: navGrey),
-    PersistentBottomNavBarItem(
         icon: Icon(LucideIcons.heart),
         title: "Wishlist",
         activeColorPrimary: primaryColor,
@@ -60,9 +54,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    Center(
-      child: Text("Explore"),
-    ),
     Center(
       child: Text("Wishlist"),
     ),
